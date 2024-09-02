@@ -15,13 +15,13 @@ class Calcilation extends StatefulWidget {
 
 class _CalcilationState extends State<Calcilation> {
   String SelectOpration = "ADD";
-  late TextEditingController _Text1 = TextEditingController();
-  late TextEditingController _Text2 = TextEditingController();
+  late TextEditingController Text1 = TextEditingController();
+  late TextEditingController Text2 = TextEditingController();
   late String result = "";
 
   void _calculation() {
-    double? number1 = double.tryParse(_Text1.text) ?? 0;
-    double? number2 = double.tryParse(_Text2.text) ?? 0;
+    double? number1 = double.tryParse(Text1.text) ?? 0;
+    double? number2 = double.tryParse(Text2.text) ?? 0;
     double Result;
     switch (SelectOpration) {
       case 'ADD':
@@ -59,7 +59,7 @@ class _CalcilationState extends State<Calcilation> {
           Padding(
             padding: const EdgeInsets.all(20),
             child: TextField(
-              controller: _Text1,
+              controller: Text1,
               decoration: InputDecoration(
                 border:
                     OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
@@ -71,7 +71,7 @@ class _CalcilationState extends State<Calcilation> {
           Padding(
             padding: const EdgeInsets.all(20),
             child: TextField(
-              controller: _Text2,
+              controller: Text2,
               decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(15)),

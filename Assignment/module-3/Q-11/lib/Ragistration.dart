@@ -12,7 +12,7 @@ class _RagistrationState extends State<Ragistration> {
   bool Swiched = false;
   @override
   Widget build(BuildContext context) {
-    void toggleSwitch(bool value) {
+    void message(bool value) {
       if (Swiched == false) {
         setState(() {
           Swiched = true;
@@ -128,7 +128,7 @@ class _RagistrationState extends State<Ragistration> {
               ),
               Switch(
                 value: Swiched,
-                onChanged: toggleSwitch,
+                onChanged: message,
                 activeColor: Colors.blue,
               ),
             ],

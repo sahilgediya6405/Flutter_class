@@ -8,7 +8,7 @@ void main() {
 }
 
 class MainApp extends StatelessWidget {
-  final _name = TextEditingController();
+  final name = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class MainApp extends StatelessWidget {
           Padding(
             padding: EdgeInsets.all(10),
             child: TextField(
-                controller: _name,
+                controller: name,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -30,7 +30,7 @@ class MainApp extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => Screen2(name: _name.text)));
+                        builder: (context) => Screen2(name: name.text)));
               },
               child: Text("SEND"))
         ],

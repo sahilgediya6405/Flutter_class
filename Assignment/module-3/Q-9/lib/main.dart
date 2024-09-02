@@ -1,106 +1,57 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MaterialApp(
+    home: ColorScreen(),
+  ));
 }
 
-class MyApp extends StatelessWidget {
+class ColorScreen extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Color Selector',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: ColorSelectorPage(),
-    );
-  }
+  _ColorState createState() => _ColorState();
 }
 
-class ColorSelectorPage extends StatefulWidget {
-  @override
-  _ColorSelectorPageState createState() => _ColorSelectorPageState();
-}
+class _ColorState extends State<ColorScreen> {
+  Color? selectedColor = Colors.red;
 
-class _ColorSelectorPageState extends State<ColorSelectorPage> {
-  Color _selectedColor = Colors.white;
-
-  void _ColorChange(Color color) {
+  void setColor(Color? color) {
     setState(() {
-      _selectedColor = color;
+      selectedColor = color;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    int _getColorValue(Color color) {
-      if (color == Colors.red) return 0;
-      if (color == Colors.green) return 1;
-      if (color == Colors.blue) return 2;
-      return -1;
-    }
-
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Select a Color'),
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Container(
-            width: double.infinity,
-            height: double.infinity,
-            color: _selectedColor,
-            child: Center(
-              child: Text(
-                'Color Display',
-                style: TextStyle(color: Colors.black, fontSize: 24),
+      body: Container(
+        color: selectedColor,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              RadioListTile(
+                title: Text('Red'),
+                value: Colors.red,
+                groupValue: selectedColor,
+                onChanged: setColor,
               ),
-            ),
+              RadioListTile(
+                title: Text('Green'),
+                value: Colors.green,
+                groupValue: selectedColor,
+                onChanged: setColor,
+              ),
+              RadioListTile(
+                title: Text('Blue'),
+                value: Colors.blue,
+                groupValue: selectedColor,
+                onChanged: setColor,
+              ),
+              SizedBox(height: 20),
+            ],
           ),
-          Expanded(
-            child: Column(
-              children: <Widget>[
-                ListTile(
-                  title: Text('Red'),
-                  leading: Radio(
-                    value: 0,
-                    groupValue: _getColorValue(_selectedColor),
-                    onChanged: (int? value) {
-                      if (value != null) {
-                        _ColorChange(Colors.red);
-                      }
-                    },
-                  ),
-                ),
-                ListTile(
-                  title: Text('Green'),
-                  leading: Radio(
-                    value: 1,
-                    groupValue: _getColorValue(_selectedColor),
-                    onChanged: (int? value) {
-                      if (value != null) {
-                        _ColorChange(Colors.green);
-                      }
-                    },
-                  ),
-                ),
-                ListTile(
-                  title: Text('Blue'),
-                  leading: Radio(
-                    value: 2,
-                    groupValue: _getColorValue(_selectedColor),
-                    onChanged: (int? value) {
-                      if (value != null) {
-                        _ColorChange(Colors.blue);
-                      }
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

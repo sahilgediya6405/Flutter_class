@@ -19,60 +19,55 @@ class ColorChanger extends StatefulWidget {
 }
 
 class _ColorChangerState extends State<ColorChanger> {
-  double _red = 0;
-  double _green = 0;
-  double _blue = 0;
+  double red = 0;
+  double green = 0;
+  double blue = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         color: Color.fromRGBO(
-          _red.toInt(),
-          _green.toInt(),
-          _blue.toInt(),
+          red.round(),
+          green.round(),
+          blue.round(),
           1.0,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            _buildSlider('Red', _red, (value) {
-              setState(() {
-                _red = value;
-              });
-            }),
-            _buildSlider('Green', _green, (value) {
-              setState(() {
-                _green = value;
-              });
-            }),
-            _buildSlider('Blue', _blue, (value) {
-              setState(() {
-                _blue = value;
-              });
-            }),
+          children: [
+            Slider(
+                value: red,
+                onChanged: (value) {
+                  setState(() {
+                    red = value;
+                  });
+                },
+                min: 0,
+                max: 255,
+                label: 'Red: $red'),
+            Slider(
+                value: green,
+                onChanged: (value) {
+                  setState(() {
+                    green = value;
+                  });
+                },
+                min: 0,
+                max: 255,
+                label: 'Green: $green'),
+            Slider(
+                value: blue,
+                onChanged: (value) {
+                  setState(() {
+                    blue = value;
+                  });
+                },
+                min: 0,
+                max: 255,
+                label: 'Blue: $blue'),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _buildSlider(
-      String label, double value, ValueChanged<double> onChanged) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(label),
-          Slider(
-            value: value,
-            min: 0,
-            max: 255,
-            divisions: 255,
-            onChanged: onChanged,
-          ),
-        ],
       ),
     );
   }
